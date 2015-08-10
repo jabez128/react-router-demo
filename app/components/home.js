@@ -1,6 +1,24 @@
 var React = require("react")
 
 var Home = React.createClass({	
+	getInitialState(){
+		return {
+			'count': this.props.store().get('count')
+		}
+	},
+	componentWillReceiveProps(nextProps){
+		console.log(nextProps)
+	},
+	handleAdd(){
+		console.log('add');
+		this.props.actions.add()
+		this.setState({'count': this.props.store().get('count')})
+	},
+	handleMinus(){
+		console.log('minus');
+		this.props.actions.minus()
+		this.setState({'count': this.props.store().get('count')})
+	},
 	render(){
 		return (
 			<div style={{"height":"100%","backgroundColor":"#3498db","paddingTop":"20px"}}>
@@ -12,6 +30,13 @@ var Home = React.createClass({
 					<li><a href="#/detail/哈林">哈林</a></li>
 					<li><a href="#/detail/">Who</a></li>
 				</ul>
+				<h1>{this.state.count}</h1>
+				<div style={{"textAlign":'center'}}>
+					<button onClick={this.handleAdd}>Add</button>
+					<br/>
+					<button onClick={this.handleMinus}>Minus</button>
+				</div>
+				<h1>{this.props.store().get('array')}</h1>
 			</div>
 		)
 	}

@@ -6,10 +6,20 @@ var Detail = React.createClass({
 	mixins: [Navigation],
 	getInitialState(){
 		return {
-			"name": "无名"
+			"name": "无名",
+			"count": this.props.store().get('count')
 		}
 	},
-
+	handleAdd(){
+		console.log('add');
+		this.props.actions.add()
+		this.setState({'count': this.props.store().get('count')})
+	},
+	handleMinus(){
+		console.log('minus');
+		this.props.actions.minus()
+		this.setState({'count': this.props.store().get('count')})
+	},
 	componentWillMount(){
 		console.log(this.props.params.name)
 		if(this.props.params.name != undefined){
@@ -28,6 +38,12 @@ var Detail = React.createClass({
 				<h1>{this.state.action}</h1>
 				<div style={{"padding":"30px","textAlign":"center"}} onClick={() =>{this.transitionTo("home")}}>
 					Transition
+				</div>
+				<h1>{this.state.count}</h1>
+				<div style={{"textAlign":'center'}}>
+					<button onClick={this.handleAdd}>Add</button>
+					<br/>
+					<button onClick={this.handleMinus}>Minus</button>
 				</div>
 			</div>
 		)

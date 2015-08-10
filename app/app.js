@@ -5,9 +5,12 @@ var DefaultRoute = Router.DefaultRoute
 var NotFoundRoute = Router.NotFoundRoute
 var RouteHandler = Router.RouteHandler
 
+import Store from "./store.js"
+import Actions from "./actions.js"
+
 var initProps = {
-	"name": '你好世界',
-	"age": 22
+	store: Store,
+	actions: Actions
 }
 
 var Home = require("./components/home.js")
@@ -20,11 +23,11 @@ var App = React.createClass({
 			<div style={{"height":"100%"}}>
 				<RouteHandler {...this.props}/>
 				}
+
 			</div>
 		)
 	}
 })
-
 var routes = (
   <Route path="/" handler={App}>
     <Route name="home" path="home" handler={Home}/>
