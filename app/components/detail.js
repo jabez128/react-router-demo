@@ -7,18 +7,24 @@ var Detail = React.createClass({
 	getInitialState(){
 		return {
 			"name": "无名",
-			"count": this.props.store().get('count')
+			'count': this.props.count,
 		}
+	},
+	componentWillReceiveProps(nextProps){
+		console.log(nextProps)
+		this.setState({
+			'count': nextProps.count
+		})
 	},
 	handleAdd(){
 		console.log('add');
 		this.props.actions.add()
-		this.setState({'count': this.props.store().get('count')})
+		//this.setState({'count': this.props.store().get('count')})
 	},
 	handleMinus(){
 		console.log('minus');
 		this.props.actions.minus()
-		this.setState({'count': this.props.store().get('count')})
+		//this.setState({'count': this.props.store().get('count')})
 	},
 	componentWillMount(){
 		console.log(this.props.params.name)

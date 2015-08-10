@@ -3,21 +3,26 @@ var React = require("react")
 var Home = React.createClass({	
 	getInitialState(){
 		return {
-			'count': this.props.store().get('count')
+			'count': this.props.count,
+			"array": this.props.array
 		}
 	},
 	componentWillReceiveProps(nextProps){
 		console.log(nextProps)
+		this.setState({
+			'count': nextProps.count,
+			"array": nextProps.array	
+		})
 	},
 	handleAdd(){
 		console.log('add');
 		this.props.actions.add()
-		this.setState({'count': this.props.store().get('count')})
+		//this.setState({'count': this.props.store().get('count')})
 	},
 	handleMinus(){
 		console.log('minus');
 		this.props.actions.minus()
-		this.setState({'count': this.props.store().get('count')})
+		//this.setState({'count': this.props.store().get('count')})
 	},
 	render(){
 		return (
@@ -36,7 +41,7 @@ var Home = React.createClass({
 					<br/>
 					<button onClick={this.handleMinus}>Minus</button>
 				</div>
-				<h1>{this.props.store().get('array')}</h1>
+				<h1>{this.state.array}</h1>
 			</div>
 		)
 	}

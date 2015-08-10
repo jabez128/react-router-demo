@@ -18,10 +18,20 @@ var Detail = require("./components/detail.js")
 var NotFound = require("./components/notfound.js")
 
 var App = React.createClass({
+	getInitialState(){
+		return {
+			"temp": this.props.store().toJSON()
+		}
+	},
+	componentDidMount(){
+		this.props.store.listen((data)=>{
+			this.setState({"temp": data.toJSON()})
+		})
+	},
 	render(){
 		return (
 			<div style={{"height":"100%"}}>
-				<RouteHandler {...this.props}/>
+				<RouteHandler {...this.state.temp} actions={this.props.actions} />
 				}
 
 			</div>
