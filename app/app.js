@@ -1,12 +1,14 @@
-var React = require("react")
-var Router = require("react-router")
+import Store from "./store.js"
+import Actions from "./actions.js"
+import React from "react"
+import Router from "react-router"
+
 var Route = Router.Route
 var DefaultRoute = Router.DefaultRoute
 var NotFoundRoute = Router.NotFoundRoute
 var RouteHandler = Router.RouteHandler
 
-import Store from "./store.js"
-import Actions from "./actions.js"
+
 
 var initProps = {
 	store: Store,
