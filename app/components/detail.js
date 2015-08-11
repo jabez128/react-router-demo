@@ -1,5 +1,5 @@
-var React = require("react")
-var Navigation = require('react-router').Navigation;
+import React from "react"
+import { Navigation } from "react-router"
 
 
 var Detail = React.createClass({	
